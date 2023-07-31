@@ -2,8 +2,16 @@
 
 use \Core\Route;
 
-return [
+$getRoutes = [
+    new Route('/', 'MainController', 'index'),
     new Route('/test', 'TestController', 'index'),
-    new Route('/test/:id', 'TestController', 'show'),
-    new Route('/user/:username/post/:postId', 'PostController', 'show'),
+    new Route('/login', 'AuthController', 'indexLogin'),
+    new Route('/register', 'AuthController', 'indexRegister'),
+    // Другие GET-маршруты
+];
+
+$postRoutes = [
+    // new Route('/login', 'AuthController', 'login'),
+    new Route('/register', 'AuthController', 'register'),
+    // Другие POST-маршруты
 ];
