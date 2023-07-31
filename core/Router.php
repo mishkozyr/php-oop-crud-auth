@@ -32,6 +32,7 @@ class Router
                 
         }
 
-        return '404';
+        $view = new View('404');
+        return $view->render();
     }
 }

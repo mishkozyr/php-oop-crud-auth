@@ -107,7 +107,7 @@ class AuthController extends Controller
         return $this->render('login', ['errors' => $errors, 'post' => $_POST]);
     }
 
-    header("Location: /");
+    header("Location: /profile");
     exit;
 }
 

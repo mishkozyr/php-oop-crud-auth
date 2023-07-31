@@ -7,7 +7,7 @@ class View
     private $view;
     private $data;
     
-    public function __construct($view, $data)
+    public function __construct($view = null, $data = [])
     {
         $this->view = $view;
         $this->data = $data;
