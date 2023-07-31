@@ -8,6 +8,6 @@ class MainController extends Controller
 {
     public function index() 
     {
-        return $this->render('main', ['title' => 'My Page Title']);
+        return $this->render('main', ['title' => 'Main page']);
     }
 }

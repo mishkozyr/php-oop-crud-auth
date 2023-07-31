@@ -1,5 +1,1 @@
-<h1>Main page</h1>
-<div>
-    <a href="/login">Войти</a>
-    <a href="/register">Зарегистрироваться</a>
-</div>
+<h1 class="text-xl">Main page</h1>
