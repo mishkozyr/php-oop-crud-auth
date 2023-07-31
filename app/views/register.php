@@ -27,7 +27,5 @@
             <input type="submit" value="Register">
         </div>
     </form>
-
-    <? var_dump($_POST); ?>
 </body>
 </html>

@@ -11,7 +11,7 @@ $getRoutes = [
 ];
 
 $postRoutes = [
-    // new Route('/login', 'AuthController', 'login'),
+    new Route('/login', 'AuthController', 'login'),
     new Route('/register', 'AuthController', 'register'),
     // Другие POST-маршруты
 ];

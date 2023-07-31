@@ -34,4 +34,22 @@ class Model
         // Вернуть идентификатор новой записи (если используется автоинкремент)
         return mysqli_insert_id(self::$link);
     }
+
+    public function find($table, $column, $value)
+    {
+        $column = mysqli_real_escape_string(self::$link, $column);
+        $value = mysqli_real_escape_string(self::$link, $value);
+
+        $sql = "SELECT * FROM $table WHERE $column = '$value'";
+        $result = mysqli_query(self::$link, $sql);
+
+        if (!$result || mysqli_num_rows($result) === 0) {
+            return null; // Record not found
+        }
+
+        // Fetch the record data from the result set
+        $record = mysqli_fetch_assoc($result);
+
+        return $record;
+    }
 }
