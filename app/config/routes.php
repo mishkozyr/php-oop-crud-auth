@@ -6,8 +6,9 @@ $getRoutes = [
     new Route('/', 'MainController', 'index'),
     new Route('/test', 'TestController', 'index'),
     new Route('/login', 'AuthController', 'indexLogin'),
+    new Route('/logout', 'AuthController', 'logout'),
     new Route('/register', 'AuthController', 'indexRegister'),
-    new Route('/profile', 'ProfileController', 'index'),
+    new Route('/profile/:userId', 'ProfileController', 'index'),
     // Другие GET-маршруты
 ];
 
