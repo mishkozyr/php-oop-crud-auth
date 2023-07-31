@@ -10,9 +10,9 @@ class Model
     {
         // Используем ленивую инициализацию соединения
         if (!self::$link) {
-            $this->link = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+            self::$link = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
-            mysqli_set_charset($this->link, 'utf8');
+            mysqli_set_charset(self::$link, 'utf8');
         }
     }
 
@@ -21,9 +21,35 @@ class Model
         return $this->$property;
     }
 
-    public function __destruct()
+    public function create($table, $data)
     {
-        // Автоматическое закрытие соединения при уничтожении объекта
-        mysqli_close($this->link);
+        $columns = implode(', ', array_keys($data));
+        $values = "'" . implode("', '", array_values($data)) . "'";
+
+        $sql = "INSERT INTO $table ($columns) VALUES ($values)";
+
+        // Выполнить запрос на вставку данных
+        mysqli_query(self::$link, $sql);
+
+        // Вернуть идентификатор новой записи (если используется автоинкремент)
+        return mysqli_insert_id(self::$link);
+    }
+
+    public function find($table, $column, $value)
+    {
+        $column = mysqli_real_escape_string(self::$link, $column);
+        $value = mysqli_real_escape_string(self::$link, $value);
+
+        $sql = "SELECT * FROM $table WHERE $column = '$value'";
+        $result = mysqli_query(self::$link, $sql);
+
+        if (!$result || mysqli_num_rows($result) === 0) {
+            return null; // Record not found
+        }
+
+        // Fetch the record data from the result set
+        $record = mysqli_fetch_assoc($result);
+
+        return $record;
     }
 }

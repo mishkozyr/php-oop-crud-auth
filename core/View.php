@@ -4,11 +4,10 @@ namespace Core;
 	
 class View
 {
-    private $layout = 'test';
     private $view;
     private $data;
     
-    public function __construct($view, $data)
+    public function __construct($view = null, $data = [])
     {
         $this->view = $view;
         $this->data = $data;
@@ -21,7 +20,13 @@ class View
 
     public function render()
     {
-        return require $this->getViewFilePath();
+        // Импортируем данные в локальную область видимости
+        extract($this->data);
+
+        // Подключаем файл представления
+        ob_start();
+        require $this->getViewFilePath();
+        return ob_get_clean();
     }
 
     private function getViewFilePath()

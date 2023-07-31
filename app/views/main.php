@@ -6,6 +6,10 @@
     <title>Test</title>
 </head>
 <body>
-    <h1>Hello, <?= $name ?></h1>
+    <h1>Main page</h1>
+    <div>
+        <a href="/login">Войти</a>
+        <a href="/register">Зарегистрироваться</a>
+    </div>
 </body>
 </html>
