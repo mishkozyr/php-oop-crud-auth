@@ -22,7 +22,7 @@ class Router
     
                 if (preg_match($pattern, $currentPath, $matches)) {
                     array_shift($matches); // Удаляем первый элемент, так как он содержит весь совпавший путь
-    
+                    
                     $controllerName = 'App\Controllers\\' . $route->controller;
                     $controller = new $controllerName();
                     $method = $route->method;

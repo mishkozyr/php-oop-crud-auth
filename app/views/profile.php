@@ -6,6 +6,7 @@
     <title>Test</title>
 </head>
 <body>
-    <h1>Your profile</h1>
+    <h1>Welcome, <?= $userName ?></h1>
+    <a href="/logout">Logout</a>
 </body>
 </html>
