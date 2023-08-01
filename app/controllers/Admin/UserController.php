@@ -30,4 +30,35 @@ class UserController extends Controller
             'user' => $user,
         ]);
     }
+
+    public function update() 
+    {
+        // getting data from a POST request
+        $userId = $_POST["id"];
+        $name = $_POST["name"];
+        $email = $_POST["email"];
+        $role_id = $_POST["role_id"];
+
+        $dataToUpdate = [
+            'name' => $name,
+            'email' => $email,
+            'role_id' => $role_id, 
+        ];
+
+        (new User)->update('test_users', $dataToUpdate, 'id', $userId);
+
+        header("Location: /admin/users");
+        exit;
+    }
+
+    public function delete() 
+    {
+        // getting data from a POST request
+        $userId = $_POST["id"];
+        
+        (new User)->delete('test_users', 'id', $userId);
+
+        header("Location: /admin/users");
+        exit;
+    }
 }

@@ -71,4 +71,32 @@ class Model
 
         return $records;
     }
+
+    public function update($table, $data, $primaryKey, $id)
+    {
+        $sets = [];
+        foreach ($data as $column => $value) {
+            $column = mysqli_real_escape_string(self::$link, $column);
+            $value = mysqli_real_escape_string(self::$link, $value);
+            $sets[] = "$column = '$value'";
+        }
+
+        $primaryKey = mysqli_real_escape_string(self::$link, $primaryKey);
+        $id = mysqli_real_escape_string(self::$link, $id);
+
+        $sets = implode(', ', $sets);
+        $sql = "UPDATE $table SET $sets WHERE $primaryKey = '$id'";
+
+        return mysqli_query(self::$link, $sql);
+    }
+
+    public function delete($table, $primaryKey, $id)
+    {
+        $primaryKey = mysqli_real_escape_string(self::$link, $primaryKey);
+        $id = mysqli_real_escape_string(self::$link, $id);
+
+        $sql = "DELETE FROM $table WHERE $primaryKey = '$id'";
+
+        return mysqli_query(self::$link, $sql);
+    }
 }

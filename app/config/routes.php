@@ -35,4 +35,13 @@ $getRoutes = [
 $postRoutes = [
     new Route('/login', 'AuthController', 'login'),
     new Route('/register', 'AuthController', 'register'),
+
+    new Route('/admin/users/update', 'Admin\UserController', 'update', [
+        AuthMiddleware::class,
+        AdminMiddleware::class,
+    ]),
+    new Route('/admin/users/delete', 'Admin\UserController', 'delete', [
+        AuthMiddleware::class,
+        AdminMiddleware::class,
+    ]),
 ];
