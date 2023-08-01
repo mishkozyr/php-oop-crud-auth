@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Middleware\AuthMiddleware;
 use App\Models\User;
 use Core\Controller;
-use App\Helpers\AuthHelper;
 
 class ProfileController extends Controller
 {
@@ -18,13 +18,6 @@ class ProfileController extends Controller
         $user = $user->find('test_users', 'id', $userId);
 
         $userName = $user['name'];
-
-        // check if the user is logged in using AuthHelper
-        if (!AuthHelper::isLoggedIn()) {
-            // redirect to the login page if the user is not logged in
-            header("Location: /login");
-            exit;
-        }
 
         return $this->render('profile', ['userName' => $userName]);
     }

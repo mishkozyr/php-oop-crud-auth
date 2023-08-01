@@ -1,19 +1,29 @@
 <?php
 
+use App\Middleware\AdminMiddleware;
+use App\Middleware\AuthMiddleware;
+use App\Middleware\GuestMiddleware;
 use \Core\Route;
 
+// GET routes
 $getRoutes = [
     new Route('/', 'MainController', 'index'),
     new Route('/test', 'TestController', 'index'),
-    new Route('/login', 'AuthController', 'indexLogin'),
+
+    new Route('/register', 'AuthController', 'indexRegister', [GuestMiddleware::class]),
+    new Route('/login', 'AuthController', 'indexLogin', [GuestMiddleware::class]),
     new Route('/logout', 'AuthController', 'logout'),
-    new Route('/register', 'AuthController', 'indexRegister'),
-    new Route('/profile/:userId', 'ProfileController', 'index'),
-    // Другие GET-маршруты
+
+    new Route('/profile/:userId', 'ProfileController', 'index', [AuthMiddleware::class]),
+
+    new Route('/admin', 'Admin\AdminController', 'index', [
+        AuthMiddleware::class,
+        AdminMiddleware::class,
+    ]),
 ];
 
+// POST routes
 $postRoutes = [
     new Route('/login', 'AuthController', 'login'),
     new Route('/register', 'AuthController', 'register'),
-    // Другие POST-маршруты
 ];

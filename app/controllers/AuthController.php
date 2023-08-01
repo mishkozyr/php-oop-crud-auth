@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Helpers\AuthHelper;
+use App\Middleware\AuthMiddleware;
 use App\Models\User;
 use Core\Controller;
 
@@ -12,27 +12,11 @@ class AuthController extends Controller
 {
     public function indexLogin() 
     {
-        // check if the user is logged in using AuthHelper
-        if (AuthHelper::isLoggedIn()) {
-            $userId = $_SESSION['user_id'];
-            // redirect to the profile page if the user is not logged in
-            header("Location: /profile/$userId");
-            exit;
-        }
-
         return $this->render('login');
     }
 
     public function indexRegister() 
     {
-        // check if the user is logged in using AuthHelper
-        if (AuthHelper::isLoggedIn()) {
-            $userId = $_SESSION['user_id'];
-            // redirect to the profile page if the user is not logged in
-            header("Location: /profile/$userId");
-            exit;
-        }
-
         return $this->render('register');
     }
 
@@ -129,6 +113,15 @@ class AuthController extends Controller
         // user authentication succeeded, set a session variable to indicate the user is logged in
         $userId = $user['id'];
         $_SESSION['user_id'] = $userId;
+
+        // check if the user is an admin
+        $isAdmin = false;
+        if ($user['role_id'] == ADMIN_ROLE_ID) {
+            $isAdmin = true;
+        }
+
+        // set the admin flag in the session
+        $_SESSION['admin'] = $isAdmin;
 
         header("Location: /profile/$userId");
         exit;
