@@ -3,6 +3,7 @@
 // start the session
 session_start();
 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/config/app.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/app/config/connection.php';
 
 spl_autoload_register(function($class) {

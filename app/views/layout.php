@@ -14,15 +14,19 @@
         <nav>
             <ul class="flex gap-5">
                 <li class="hover:text-gray-300"><a href="/">Home</a></li>
+
+                <? if ((new \App\Middleware\AdminMiddleware())()): ?>
+                    <li class="hover:text-gray-300"><a href="/admin">Admin panel</a></li>
+                <? endif; ?>
             </ul>
         </nav>
         <div class="flex gap-5">
-            <? if (\App\Helpers\AuthHelper::isLoggedIn()) { ?>
+            <? if ((new \App\Middleware\AuthMiddleware())()): ?>
                 <a class="hover:text-gray-300" href="/logout">Logout</a>
-            <? } else { ?>
+            <? else: ?>
                 <a class="hover:text-gray-300" href="/login">Login</a>
                 <a class="hover:text-gray-300" href="/register">Register</a>
-            <? } ?>
+            <? endif; ?>
         </div>
     </header>
 
