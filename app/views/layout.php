@@ -20,8 +20,8 @@
             <? if (\App\Helpers\AuthHelper::isLoggedIn()) { ?>
                 <a class="hover:text-gray-300" href="/logout">Logout</a>
             <? } else { ?>
-                <a class="hover:text-gray-300" href="/login">Войти</a>
-                <a class="hover:text-gray-300" href="/register">Зарегистрироваться</a>
+                <a class="hover:text-gray-300" href="/login">Login</a>
+                <a class="hover:text-gray-300" href="/register">Register</a>
             <? } ?>
         </div>
     </header>
