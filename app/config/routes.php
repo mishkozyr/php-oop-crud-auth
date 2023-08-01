@@ -20,10 +20,36 @@ $getRoutes = [
         AuthMiddleware::class,
         AdminMiddleware::class,
     ]),
+
+    new Route('/admin/users', 'Admin\UserController', 'show', [
+        AuthMiddleware::class,
+        AdminMiddleware::class,
+    ]),
+    new Route('/admin/users/edit/:userId', 'Admin\UserController', 'edit', [
+        AuthMiddleware::class,
+        AdminMiddleware::class,
+    ]),
+    new Route('/admin/users/create', 'Admin\UserController', 'create', [
+        AuthMiddleware::class,
+        AdminMiddleware::class,
+    ]),
 ];
 
 // POST routes
 $postRoutes = [
     new Route('/login', 'AuthController', 'login'),
     new Route('/register', 'AuthController', 'register'),
+
+    new Route('/admin/users/update', 'Admin\UserController', 'update', [
+        AuthMiddleware::class,
+        AdminMiddleware::class,
+    ]),
+    new Route('/admin/users/delete', 'Admin\UserController', 'delete', [
+        AuthMiddleware::class,
+        AdminMiddleware::class,
+    ]),
+    new Route('/admin/users/create', 'Admin\UserController', 'create', [
+        AuthMiddleware::class,
+        AdminMiddleware::class,
+    ]),
 ];
