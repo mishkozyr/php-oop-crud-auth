@@ -29,6 +29,10 @@ $getRoutes = [
         AuthMiddleware::class,
         AdminMiddleware::class,
     ]),
+    new Route('/admin/users/create', 'Admin\UserController', 'create', [
+        AuthMiddleware::class,
+        AdminMiddleware::class,
+    ]),
 ];
 
 // POST routes
@@ -41,6 +45,10 @@ $postRoutes = [
         AdminMiddleware::class,
     ]),
     new Route('/admin/users/delete', 'Admin\UserController', 'delete', [
+        AuthMiddleware::class,
+        AdminMiddleware::class,
+    ]),
+    new Route('/admin/users/create', 'Admin\UserController', 'create', [
         AuthMiddleware::class,
         AdminMiddleware::class,
     ]),
