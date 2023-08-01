@@ -52,4 +52,23 @@ class Model
 
         return $record;
     }
+
+    public function all($table)
+    {
+        $table = mysqli_real_escape_string(self::$link, $table);
+
+        $sql = "SELECT * FROM $table";
+        $result = mysqli_query(self::$link, $sql);
+
+        if (!$result || mysqli_num_rows($result) === 0) {
+            return []; // Return an empty array when no records found
+        }
+
+        $records = [];
+        while ($record = mysqli_fetch_assoc($result)) {
+            $records[] = $record;
+        }
+
+        return $records;
+    }
 }

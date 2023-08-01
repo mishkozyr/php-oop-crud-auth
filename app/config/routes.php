@@ -20,6 +20,15 @@ $getRoutes = [
         AuthMiddleware::class,
         AdminMiddleware::class,
     ]),
+
+    new Route('/admin/users', 'Admin\UserController', 'show', [
+        AuthMiddleware::class,
+        AdminMiddleware::class,
+    ]),
+    new Route('/admin/users/edit/:userId', 'Admin\UserController', 'edit', [
+        AuthMiddleware::class,
+        AdminMiddleware::class,
+    ]),
 ];
 
 // POST routes

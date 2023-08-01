@@ -34,8 +34,11 @@
         <?= $content ?>
     </main>
 
-    <footer class="bg-gray-800 text-white text-right p-6 self-end w-full">
-        <p>&copy; <?php echo date('Y'); ?> </p>
+    <footer class="bg-gray-800 text-white text-right p-6 w-full flex justify-end gap-5">
+        <p>&copy; <?php echo date('Y'); ?> </p> 
+        <div>
+            <a class="hover:text-gray-300" href="https://github.com/mishkozyr">GitHub</a>
+        </div>
     </footer>
 
     <script src="/public/js/app.js"></script>
